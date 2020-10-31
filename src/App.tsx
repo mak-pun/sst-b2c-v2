@@ -1,25 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+
+import {UIRouter, UIView, pushStateLocationPlugin} from '@uirouter/react';
+import Home from './pages/home/Home'
+import HotelResults from './pages/hotelResults/HotelResults'
+import HotelResult from './pages/hotelResult/HotelResult'
+import HotelBooking from './pages/hotelBooking/HotelBooking'
+
+const states = [
+  {
+    name: 'home',
+    url: '/home',
+    component: Home
+  },
+  {
+    name: 'hotel',
+    url: '/hotel',
+    abstract: true,
+    component: UIView
+  },
+  {
+    name: 'hotel.results',
+    url: '/results',
+    component: HotelResults
+  },
+  {
+    name: 'hotel.result',
+    url: '/result',
+    component: HotelResult
+  },
+  {
+    name: 'hotel.booking',
+    url: '/booking',
+    component: HotelBooking
+  }
+]
+
+const plugins = [pushStateLocationPlugin]
 
 function App() {
+  useEffect(()=>{
+
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <UIRouter plugins={plugins} states={states}>
+      <UIView />
+    </UIRouter>
+    </>
   );
 }
 
