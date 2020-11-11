@@ -1,4 +1,4 @@
 {
-    "apiUrl": "https://rq-stage.sunseries.travel/sunseries/v1/",
-    "omisePaymentDestinationId": "PD000027A"
+    "apiUrl": "https://rq-int.sunseries.travel/sunseries/v1/",
+    "omisePaymentDestinationId": "PD000181D"
 }
