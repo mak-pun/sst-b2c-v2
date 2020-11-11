@@ -54,8 +54,8 @@ const SearchForm = (props: Props) => {
 
     const selectDestination = (destination: string) => {
         const newCriteria = { ...criteria }
-        newCriteria.city = destination
-
+        newCriteria.hotel_ids = [destination]
+        console.log('newCriteria', newCriteria)
         setCriteria(newCriteria)
     }
 
@@ -119,7 +119,7 @@ const SearchForm = (props: Props) => {
 
     const generateRooms = (rooms: number, adults: number, children: number) => {
         const preparedRooms: Array<Room> = []
-        const generatedRooms: Array<Room> = []
+        // const generatedRooms: Array<Room> = []
 
         while (rooms > 0) {
             preparedRooms.push({ adults: 0, children: [] })
@@ -172,7 +172,7 @@ const SearchForm = (props: Props) => {
      */
 
      const search = ()=>{
-        if(criteria.city){
+        if((criteria.hotel_ids as Array<string>).length > 0){
             dispatch(searchHotels(criteria))
             router.stateService.go('hotel.results')
         }
@@ -182,7 +182,7 @@ const SearchForm = (props: Props) => {
         <form className={mode==='horizontal'?'mt-4':''}>
             {mode === 'horizontal' ? (<div className='row d-block nav-select d-lg-flex mb-lg-3 px-2 px-lg-3'>
                 <div style={{ position: 'relative', paddingRight: '15px' }} className='col-sm-12 col-lg-3dot6 col-xl-3dot7 mb-4 mb-lg-0'>
-                    <DestinationSelector mode={mode} selectedDestination={criteria.city as string} selectDestination={selectDestination} />
+                    <DestinationSelector mode={mode} selectedDestination={((criteria.hotel_ids as Array<string>)[0] || '') } selectDestination={selectDestination} />
                 </div>
 
                 <div className='col-sm-12 col-lg-3dot7 col-xl-3dot6 mb-4 mb-lg-0'>

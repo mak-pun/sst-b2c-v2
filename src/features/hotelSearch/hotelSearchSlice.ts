@@ -18,7 +18,8 @@ interface HotelSearchResultsState {
 const initialState: HotelSearchResultsState = {
   results: [],
   criteria: {
-    city: undefined,
+    hotel_ids: [],
+    // city: undefined,
     from: moment().add(1, 'week').format('YYYY-MM-DD'),
     to: moment().add(1, 'day').add(3, 'week').format('YYYY-MM-DD'),
     customer_country: 'country::thailand',
@@ -77,6 +78,7 @@ export const searchHotels = (
   criteria: Criteria
 ): AppThunk => async dispatch => {
   try {
+    console.log('searchHotels', criteria)
     dispatch(searchHotelsStart(criteria))
     const res = await HotelSearch.search(criteria)
     dispatch(searchHotelsSuccess(res))
