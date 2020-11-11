@@ -21,7 +21,7 @@ const Main = ()=>{
 
             <Banner />
 
-            <Tabs />
+            {/* <Tabs /> */}
 
             <IconBlock/>
             

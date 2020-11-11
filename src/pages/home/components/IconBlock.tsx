@@ -5,7 +5,7 @@ const IconBlock = ()=>{
     
            
             {/* Icon Block v1 */}
-            <div className="icon-block-center icon-center-v1 border-bottom border-color-8">
+            <div className="icon-block-center icon-center-v1 border-bottom border-color-8 mt-5 pt-5">
                 <div className="container text-center space-bottom-1">
                     {/* Title */}
                     <div className="w-md-80 w-lg-50 text-center mx-md-auto pb-1">

@@ -32,7 +32,7 @@ const RoomClassResults = () => {
     return (<>
 
 
-        <div className="border-bottom py-4">
+        <div className="py-4 mb-5">
             <h5 id='scroll-amenities' className='font-size-21 font-weight-bold text-dark mb-4'>
                 Select Your Room
                 </h5>

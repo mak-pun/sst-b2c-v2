@@ -22,7 +22,7 @@ const Main = () => {
     return <>
 
         {/* ========== MAIN CONTENT ========== */}
-        <main id="content">
+        <main id="content" className="border-bottom border-color-8">
             {/* <div className="bg-primary-darken py-4">
                 <div className="container">
                     <!-- Search Jobs Form -->
