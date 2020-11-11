@@ -125,9 +125,9 @@
 .select-search__option,
 .select-search__not-found {
     display: block;
-    height: 36px;
+    min-height: 36px;
     width: 100%;
-    padding: 0 16px;
+    padding: 5px 16px;
     background: #fff;
     border: none;
     outline: none;
