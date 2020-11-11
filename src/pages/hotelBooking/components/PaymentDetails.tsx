@@ -1,6 +1,71 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+import moment from 'moment'
+import { useDispatch, useSelector } from 'react-redux'
+import { PaymentInformation, switchToStep, book } from '../../../features/HotelBookingConfirmation/hotelBookingConfirmationSlice'
+import { RootState } from '../../../app/rootReducer'
+
+
+
+const schema = yup.object().shape({
+    cardHolderName: yup.string().required().label('Card Holder Name'),
+    cardNumber: yup.string().required().label('Card Number'),
+    expiryMonth: yup.string().required().label('Expire Month'),
+    expiryYear: yup.string().required().label('Expire Year'),
+    ccv: yup.string().label('CCV'),
+})
+
 
 const PaymentDetails = () => {
+
+    const dispatch = useDispatch()
+    const {booking: quotedBooking, guestInformation, stepCompleted} = useSelector((state: RootState)=>state.hotelBookingConfirmation)
+    const { register, handleSubmit, errors } = useForm<PaymentInformation>({ resolver: yupResolver(schema) })
+
+
+    const [years, setYears] = useState<Array<string>>([])
+
+    const onSubmit = handleSubmit(({ cardHolderName, cardNumber, expiryMonth,expiryYear,ccv  }) => {
+        console.log(cardHolderName, cardHolderName, cardNumber, expiryMonth, expiryYear, ccv)
+        
+        const creditcard = {
+            cardHolderName,
+            cardNumber,
+            expiryMonth,
+            expiryYear,
+            ccv
+        }
+        dispatch(book(creditcard, quotedBooking, guestInformation))
+    })
+
+    useEffect(()=>{
+        let date = moment();
+        let years = []
+        for(let i = 0; i< 10;i++){
+           
+            years.push(date.format('YYYY'))
+            date = date.add(1, 'year')
+
+        }
+
+        setYears(years)
+
+    }, [])
+
+    // useEffect(()=>{
+    //     if(paymentInformation.paid){
+    //         dispatch(book('3'))
+    //     }
+    // },[paymentInformation.paid])
+
+    useEffect(()=>{
+        if(stepCompleted === 2){
+            dispatch(switchToStep('3'))
+        }
+    },[stepCompleted])
+    
     return (
         <>
             <div className="pt-4 pb-5 px-5">
@@ -20,17 +85,6 @@ const PaymentDetails = () => {
                             </div>
                         </a>
                     </li>
-                    <li className="nav-item mx-3">
-                        <a className="rounded py-5 border-width-2 border nav-link font-weight-medium" id="pills-two-example2-tab" data-toggle="pill" href="#pills-two-example2" role="tab" aria-controls="pills-two-example2" aria-selected="false">
-                            <div className="height-25 width-25 flex-content-center bg-primary rounded-circle position-absolute left-0 top-0 ml-2 mt-2">
-                                <i className="flaticon-tick text-white font-size-15"></i>
-                            </div>
-                            <div className="d-md-flex justify-content-md-center align-items-md-center flex-wrap">
-                                <img className="img-fluid mb-3" src={process.env.PUBLIC_URL + '/assets/img/199x35/img2.jpg'} alt="Image-Description" />
-                                <div className="w-100 text-dark">Payment with paypal</div>
-                            </div>
-                        </a>
-                    </li>
                 </ul>
                 {/*End Nav Classic */}
 
@@ -38,34 +92,38 @@ const PaymentDetails = () => {
                 <div className="tab-content">
                     <div className="tab-pane fade pt-8 show active" id="pills-one-example2" role="tabpanel" aria-labelledby="pills-one-example2-tab">
                         {/*Payment Form */}
-                        <form className="js-validate">
+                        <form onSubmit={onSubmit} noValidate>
                             <div className="row">
                                 {/*Input */}
                                 <div className="col-sm-6 mb-4">
-                                    <div className="js-form-message">
+                                    <div className={errors.cardHolderName ? 'u-has-error' : ''}>
                                         <label className="form-label">
                                             Card Holder Name
-                                                        </label>
+                                        </label>
 
-                                        <input type="text" className="form-control" name="Cardname" placeholder="" aria-label="" required
-                                            data-msg="Please enter card holder name."
-                                            data-error-className="u-has-error"
-                                            data-success-className="u-has-success" />
+                                        <input
+                                            ref={register}
+                                            type="text"
+                                            className="form-control"
+                                            name="cardHolderName"
+                                        />
                                     </div>
                                 </div>
                                 {/*End Input */}
 
                                 {/*Input */}
                                 <div className="col-sm-6 mb-4">
-                                    <div className="js-form-message">
+                                    <div className={errors.cardNumber ? 'u-has-error' : ''}>
                                         <label className="form-label">
                                             Card Number
-                                                        </label>
+                                        </label>
 
-                                        <input type="number" className="form-control" name="Cardnumber" placeholder="" aria-label="" required
-                                            data-msg="Please enter card number."
-                                            data-error-className="u-has-error"
-                                            data-success-className="u-has-success" />
+                                        <input
+                                            ref={register}
+                                            type="number"
+                                            className="form-control"
+                                            name="cardNumber"
+                                        />
                                     </div>
                                 </div>
                                 {/*End Input */}
@@ -76,27 +134,38 @@ const PaymentDetails = () => {
                                 <div className="col-sm-6 mb-4">
                                     <div className="row">
                                         <div className="col-sm-6 mb-4 mb-md-0">
-                                            <div className="js-form-message">
+                                            <div className={errors.expiryMonth ? 'u-has-error' : ''}>
                                                 <label className="form-label">
                                                     Expiry Month
-                                                                </label>
+                                                </label>
 
-                                                <input type="number" className="form-control" name="Expirymonth" placeholder="" aria-label="" required
-                                                    data-msg="Please enter expiry month."
-                                                    data-error-className="u-has-error"
-                                                    data-success-className="u-has-success" />
+                                                <select ref={register} className="form-control" name="expiryMonth">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
-                                            <div className="js-form-message">
+                                            <div className={errors.expiryYear ? 'u-has-error' : ''}>
                                                 <label className="form-label">
                                                     Expiry Year
-                                                                </label>
+                                                </label>
 
-                                                <input type="number" className="form-control" name="Expiryyear" placeholder="" aria-label="" required
-                                                    data-msg="Please enter expiry year."
-                                                    data-error-className="u-has-error"
-                                                    data-success-className="u-has-success" />
+                                                <select ref={register} className="form-control" name="expiryYear">
+                                                    {years.map(year=>{
+                                                        return <option value={year}>{year}</option>
+                                                    })}
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -105,15 +174,16 @@ const PaymentDetails = () => {
 
                                 {/*Input */}
                                 <div className="col-sm-6 mb-4">
-                                    <div className="js-form-message">
+                                    <div className={errors.ccv ? 'u-has-error' : ''}>
                                         <label className="form-label">
                                             CCV
-                                                        </label>
-
-                                        <input type="number" className="form-control" name="ccvnumber" placeholder="" aria-label="" required
-                                            data-msg="Please enter ccv number."
-                                            data-error-className="u-has-error"
-                                            data-success-className="u-has-success" />
+                                        </label>
+                                        <input
+                                            ref={register}
+                                            type="number"
+                                            className="form-control"
+                                            name="ccv"
+                                        />
                                     </div>
                                 </div>
                                 {/*End Input */}
@@ -122,7 +192,7 @@ const PaymentDetails = () => {
 
                                 <div className="col">
                                     {/*Checkbox */}
-                                    <div className="js-form-message mb-5">
+                                    {/* <div className="js-form-message mb-5">
                                         <div className="custom-control custom-checkbox d-flex align-items-center text-muted">
                                             <input type="checkbox" className="custom-control-input" id="termsCheckbox" name="termsCheckbox" required
                                                 data-msg="Please accept our Terms and Conditions."
@@ -135,7 +205,7 @@ const PaymentDetails = () => {
                                                 </small>
                                             </label>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/*End Checkbox */}
                                     <button type="submit" className="btn btn-primary w-100 rounded-sm transition-3d-hover font-size-16 font-weight-bold py-3">CONFIRM BOOKING</button>
                                 </div>
@@ -144,54 +214,7 @@ const PaymentDetails = () => {
                         {/*End Payment Form */}
                     </div>
 
-                    <div className="tab-pane fade pt-8" id="pills-two-example2" role="tabpanel" aria-labelledby="pills-two-example2-tab">
-                        <form className="js-validate">
-                            {/*Login */}
-                            <div id="login" data-target-group="idForm">
-                                {/*Form Group */}
-                                <div className="form-group">
-                                    <div className="js-form-message js-focus-state">
-                                        <label className="sr-only" htmlFor="signinEmail">Email</label>
-                                        <div className="input-group">
-                                            <div className="input-group-prepend">
-                                                <span className="input-group-text" id="signinEmailLabel">
-                                                    <span className="fas fa-user"></span>
-                                                </span>
-                                            </div>
-                                            <input type="email" className="form-control" name="email" id="signinEmail" placeholder="Email" aria-label="Email" aria-describedby="signinEmailLabel" required
-                                                data-msg="Please enter a valid email address."
-                                                data-error-className="u-has-error"
-                                                data-success-className="u-has-success" />
-                                        </div>
-                                    </div>
-                                </div>
-                                {/*End Form Group */}
 
-                                {/*Form Group */}
-                                <div className="form-group mb-4">
-                                    <div className="js-form-message js-focus-state">
-                                        <label className="sr-only" htmlFor="signinPassword">Password</label>
-                                        <div className="input-group">
-                                            <div className="input-group-prepend">
-                                                <span className="input-group-text" id="signinPasswordLabel">
-                                                    <span className="fas fa-lock"></span>
-                                                </span>
-                                            </div>
-                                            <input type="password" className="form-control" name="password" id="signinPassword" placeholder="Password" aria-label="Password" aria-describedby="signinPasswordLabel" required
-                                                data-msg="Your password is invalid. Please try again."
-                                                data-error-className="u-has-error"
-                                                data-success-className="u-has-success" />
-                                        </div>
-                                    </div>
-                                </div>
-                                {/*End Form Group */}
-
-                                <div className="mb-2">
-                                    <button type="submit" className="btn btn-block btn-primary transition-3d-hover">Login</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                 </div>
                 {/*End Tab Content */}
             </div>

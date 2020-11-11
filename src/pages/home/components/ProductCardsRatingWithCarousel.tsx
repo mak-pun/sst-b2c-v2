@@ -108,6 +108,8 @@ const ProductCardsRatingWithCarousel = () => {
                             <>
                                 <div className="js-slide mt-2">
                                     <ResultCard
+                                        searchId=''
+                                        hotelId=''
                                         type='common'
                                         image={result.images[0]}
                                         location={result.location}

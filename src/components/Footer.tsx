@@ -14,10 +14,6 @@ const Footer = ()=>{
         // initialization of select
         $.HSCore.components.HSSelectPicker.init('.js-select');
 
-        // Page preloader
-        setTimeout(function() {
-            $('#jsPreloader').fadeOut(500)
-            }, 800);
     }, [])
 
     return <>

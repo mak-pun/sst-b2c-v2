@@ -2,11 +2,16 @@ import React, { useEffect } from 'react'
 import { $ } from '../helper'
 import { useSref } from '@uirouter/react'
 
-const Header2 = () => {
+type Props = {
+    mode: 'solid' | 'transparent'
+}
+
+const Header = (props: Props) => {
 
 
     // let mode = 'transparent'
-    let mode = 'solid'
+    const {mode} = props
+    // let mode = 'solid'
 
     const homeSref = useSref('home', {})
     const findHotelSref = useSref('hotel.results', {})
@@ -169,4 +174,4 @@ const Header2 = () => {
 }
 
 
-export default Header2
+export default Header

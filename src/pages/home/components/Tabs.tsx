@@ -98,6 +98,8 @@ const Tabs = () => {
                                     <>
                                         <div className="col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-4 pb-1">
                                             <ResultCard
+                                                searchId=''
+                                                hotelId=''
                                                 type='tab'
                                                 image={result.images[0]}
                                                 location={result.location}
@@ -119,6 +121,8 @@ const Tabs = () => {
                                     <>
                                         <div className="col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-4 pb-1">
                                             <ResultCard
+                                                searchId=''
+                                                hotelId=''
                                                 type='tab'
                                                 image={result.images[0]}
                                                 location={result.location}

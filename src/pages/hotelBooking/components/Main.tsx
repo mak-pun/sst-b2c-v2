@@ -3,47 +3,22 @@ import GuestDetails from './GuestDetails'
 import PaymentDetails from './PaymentDetails'
 import BookingCornfirmed from './BookingConfirmed'
 import Sidebar from './Sidebar'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../app/rootReducer'
+import { switchToStep } from '../../../features/HotelBookingConfirmation/hotelBookingConfirmationSlice'
 
-
-type State = {
-    label: string;
-    active: boolean;
-}
-
-type StepStates = { [key: string]: State }
 
 const Main = () => {
+    const { stepCompleted, stepStates } = useSelector((state: RootState) => state.hotelBookingConfirmation)
 
 
-    const [stepCompleted, setStepCompleted] = useState<number>(3)
-    const [stepStates, setStepStates] = useState<StepStates>({
-        '1': { label: 'Customer information', active: false },
-        '2': { label: 'Payment information', active: false },
-        '3': { label: 'Booking is confirmed!', active: true }
-    })
+    // useEffect(() => {
 
-    useEffect(() => {
+    //     if (stepCompleted < 3) {
+    //         switchToStep((stepCompleted + 1) + '')
+    //     }
 
-        if (stepCompleted < 3) {
-            switchToStep((stepCompleted + 1) + '')
-        }
-
-    }, [stepCompleted])
-
-    const switchToStep = (stepNumber: string) => {
-
-        console.log(stepCompleted, stepNumber)
-        if (stepCompleted + 1 >= parseInt(stepNumber)) {
-
-            setStepStates({
-                '1': { ...stepStates['1'], active: false },
-                '2': { ...stepStates['2'], active: false },
-                '3': { ...stepStates['3'], active: false },
-                [stepNumber]: { ...stepStates[stepNumber], active: true }
-            })
-        }
-
-    }
+    // }, [stepCompleted])
 
     return (
         <>

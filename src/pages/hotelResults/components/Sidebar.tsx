@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import {$, Custombox} from '../../../helper'
+import SearchForm from '../../../components/SearchForm';
 
 const Sidebar = () => {
 
@@ -1146,114 +1147,19 @@ const Sidebar = () => {
                     <i className="far fa-caret-square-down text-primary font-size-20 card-btn-arrow ml-0"></i>
                     <span className="text-primary ml-2">Sidebar</span>
                 </button>
+
+
+               
+
+
+
                 <div id="sidebar" className="collapse navbar-collapse">
                     <div className="mb-6 w-100">
                         <div className="pb-4 mb-2">
                             <div className="sidebar border border-color-1 rounded-xs">
                                 <div className="p-4 mb-1">
-                                    {/* Input */}
-                                    <span className="d-block text-gray-1  font-weight-normal mb-0 text-left">Destination or Hotel Name</span>
-                                    <div className="mb-4">
-                                        <div className="input-group border-bottom border-width-2 border-color-1">
-                                            <i className="flaticon-pin-1 d-flex align-items-center mr-2 text-primary font-weight-semi-bold font-size-22"></i>
-                                            <input type="text" className="form-control font-weight-medium font-size-15 shadow-none hero-form border-0 p-0" placeholder="Where are you going?" aria-label="Keyword or title" aria-describedby="keywordInputAddon" />
-                                        </div>
-                                    </div>
-                                    {/* End Input */}
-                                    {/* Input */}
-                                    <span className="d-block text-gray-1 font-weight-normal mb-0 text-left">Check In - Out</span>
-                                    <div className="mb-4">
-                                        <div className="border-bottom border-width-2 border-color-1">
-                                            <div id="datepickerWrapperPick" className="u-datepicker input-group">
-                                                <div className="input-group-prepend">
-                                                    <span className="d-flex align-items-center mr-2 font-size-21">
-                                                        <i className="flaticon-calendar text-primary font-weight-semi-bold"></i>
-                                                    </span>
-                                                </div>
-                                                <input className="js-range-datepicker font-weight-medium font-size-15 ml-1 shadow-none form-control hero-form bg-transparent border-0 flatpickr-input p-0" type="text" placeholder="July 7/2019" aria-label="July 7/2019"
-                                                    data-rp-wrapper="#datepickerWrapperPick"
-                                                    data-rp-type="range"
-                                                    data-rp-date-format="M d / Y"
-                                                    data-rp-default-date='["Jul 7 / 2020", "Aug 25 / 2020"]' />
-                                            </div>
-                                            {/* End Datepicker */}
-                                        </div>
-                                    </div>
-                                    {/* End Input */}
-
-                                    {/* Input */}
-                                    <span className="d-block text-gray-1 font-weight-normal mb-0 text-left">Rooms and Guests</span>
-                                    <div className="mb-4 position-relative">
-                                        <div className="border-bottom border-width-2 border-color-1">
-                                            <a id="basicDropdownClickInvoker" className="dropdown-nav-link dropdown-toggle flex-horizontal-center pt-3 pb-2" href="#" role="button"
-                                                aria-controls="basicDropdownClick"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                                data-unfold-event="click"
-                                                data-unfold-target="#basicDropdownClick"
-                                                data-unfold-type="css-animation"
-                                                data-unfold-duration="300"
-                                                data-unfold-delay="300"
-                                                data-unfold-hide-on-scroll="true"
-                                                data-unfold-animation-in="slideInUp"
-                                                data-unfold-animation-out="fadeOut">
-                                                <i className="flaticon-add-group d-flex align-items-center mr-3 font-size-20 text-primary font-weight-semi-bold"></i>
-                                                <span className="text-black font-weight-medium font-size-15 mr-auto">2 Rooms - 3 Guests</span>
-                                            </a>
-                                            <div id="basicDropdownClick" className="dropdown-menu dropdown-unfold col m-0" aria-labelledby="basicDropdownClickInvoker">
-                                                <div className="w-100 py-2 px-3 mb-3">
-                                                    <div className="js-quantity mx-3 row align-items-center justify-content-between">
-                                                        <span className="d-block font-size-16 text-secondary font-weight-medium">Rooms</span>
-                                                        <div className="d-flex">
-                                                            <a className="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="#">
-                                                                <small className="fas fa-minus btn-icon__inner"></small>
-                                                            </a>
-                                                            <input className="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center" type="text" value="1" />
-                                                            <a className="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="#">
-                                                                <small className="fas fa-plus btn-icon__inner"></small>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="w-100 py-2 px-3 mb-3">
-                                                    <div className="js-quantity mx-3 row align-items-center justify-content-between">
-                                                        <span className="d-block font-size-16 text-secondary font-weight-medium">Adults</span>
-                                                        <div className="d-flex">
-                                                            <a className="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="#">
-                                                                <small className="fas fa-minus btn-icon__inner"></small>
-                                                            </a>
-                                                            <input className="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center" type="text" value="1" />
-                                                            <a className="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="#">
-                                                                <small className="fas fa-plus btn-icon__inner"></small>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="w-100 py-2 px-3">
-                                                    <div className="js-quantity mx-3 row align-items-center justify-content-between">
-                                                        <span className="d-block font-size-16 text-secondary font-weight-medium">Child</span>
-                                                        <div className="d-flex">
-                                                            <a className="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="#">
-                                                                <small className="fas fa-minus btn-icon__inner"></small>
-                                                            </a>
-                                                            <input className="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center" type="text" value="1" />
-                                                            <a className="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="#">
-                                                                <small className="fas fa-plus btn-icon__inner"></small>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="w-100 text-right py-1 pr-5">
-                                                    <a className="text-primary font-weight-semi-bold font-size-16" href="#">Done</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* End Input */}
-
-                                    <div className="text-center">
-                                        <button type="submit" className="btn btn-primary height-60 w-100 font-weight-bold mb-xl-0 mb-lg-1 transition-3d-hover"><i className="flaticon-magnifying-glass mr-2 font-size-17"></i>Search</button>
-                                    </div>
+                                    <SearchForm mode='vertical'/>
+                                   
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './Header'
 import Description from './Description'
-import SelectRoom from './SelectRoom';
 import NearestEssentials from './NearestEssentials'
 import WhatsNearby from './WhatsNearby'
 import HouseRules from './HouseRules'
@@ -9,8 +8,17 @@ import AverageReviews from './AverageReviews'
 import VerifiedGuestComments from './VerifiedGuestComments'
 import WriteAReview from './WriteAReview'
 import HotelNearby from './HotelNearby'
+import { useDispatch, useSelector } from 'react-redux';
+import { getHotelResult } from '../../../features/hotelResult/hotelResultSlice'
+import { useCurrentStateAndParams } from '@uirouter/react';
+import { RootState } from '../../../app/rootReducer';
+import { getHotel } from '../../../features/hotel/hotel';
+import RoomClassResults from './selectRoom/RoomClassResults';
 
 const Main = () => {
+
+
+
     return <>
 
         {/* ========== MAIN CONTENT ========== */}
@@ -185,7 +193,7 @@ const Main = () => {
             <div className="container mt-7">
                 <Header></Header>
                 <Description></Description>
-                <SelectRoom></SelectRoom>
+                <RoomClassResults></RoomClassResults>
                 {/* <NearestEssentials></NearestEssentials>
                 <WhatsNearby></WhatsNearby>
                 <HouseRules></HouseRules>
@@ -202,3 +210,10 @@ const Main = () => {
 }
 
 export default Main
+
+
+
+
+
+
+
