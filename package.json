@@ -1,6 +1,7 @@
 {
   "name": "sst-b2c",
   "version": "0.1.0",
+  "homepage": "https://b2c-v2.sunseries.travel/",
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^1.0.1",
