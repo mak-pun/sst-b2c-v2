@@ -5,63 +5,65 @@ import ResultCard from '../../../components/ResultCard'
 const ProductCardsRatingWithCarousel = () => {
 
     const popularHotels = [{
-        images: [process.env.PUBLIC_URL + '/assets/img/300x230/img9.jpg'],
-        location: 'Greater London, United Kingdom',
+        images: [process.env.PUBLIC_URL + '/assets/img/hotels/suns01918.jpg'],
+        location: 'Nong Kae, Hua Hin, Prachuap Khiri Khan, Thailand',
         stars: 5,
-        title: 'Empire Prestige Causeway Bay',
-        price: 899,
-        currency: 'THB'
+        title: 'Hyatt Regency Hua Hin and The Barai',
+        // price: 899,
+        // currency: 'THB'
     }, {
-        images: [process.env.PUBLIC_URL + '/assets/img/300x230/img9.jpg'],
-        location: 'Istanbul, Turkey',
+        images: [process.env.PUBLIC_URL + '/assets/img/hotels/suns01919.jpg'],
+        location: 'Khuk Khak, Takuapa, Phang Nga, Thailand',
         stars: 5,
-        title: 'Park Avenue Baker Street London',
-        price: 899,
-        currency: 'THB'
+        title: 'JW Marriott Khao Lak Resort & Spa',
+        // price: 899,
+        // currency: 'THB'
     }, {
-        images: [process.env.PUBLIC_URL + '/assets/img/300x230/img9.jpg'],
-        location: 'Istanbul, Turkey',
+        images: [process.env.PUBLIC_URL + '/assets/img/hotels/suns01920.jpg'],
+        location: 'Hua Hin, Prachub Kiri Khan, Thailand',
         stars: 5,
-        title: 'New Road Hotel',
-        price: 899,
-        currency: 'THB'
+        title: 'Anantara Hua Hin Resort ',
+        // price: 899,
+        // currency: 'THB'
     }, {
-        images: [process.env.PUBLIC_URL + '/assets/img/300x230/img9.jpg'],
-        location: 'stanbul, Turkey',
+        images: [process.env.PUBLIC_URL + '/assets/img/hotels/suns01921.jpg'],
+        location: 'Bangkok, Thailand',
         stars: 5,
-        title: 'New York Marriott Downtown',
-        price: 899,
-        currency: 'THB'
+        title: 'SO Sofitel Bangkok',
+        // price: 899,
+        // currency: 'THB'
     },
     {
-        images: [process.env.PUBLIC_URL + '/assets/img/300x230/img9.jpg'],
-        location: 'Greater London, United Kingdom',
+        images: [process.env.PUBLIC_URL + '/assets/img/hotels/suns01922.jpg'],
+        location: 'Takuapa, Phang Nga, Khao Lak, Thailand',
         stars: 5,
-        title: 'Empire Prestige Causeway Bay',
-        price: 899,
-        currency: 'THB'
-    }, {
-        images: [process.env.PUBLIC_URL + '/assets/img/300x230/img9.jpg'],
-        location: 'Istanbul, Turkey',
-        stars: 5,
-        title: 'Park Avenue Baker Street London',
-        price: 899,
-        currency: 'THB'
-    }, {
-        images: [process.env.PUBLIC_URL + '/assets/img/300x230/img9.jpg'],
-        location: 'Istanbul, Turkey',
-        stars: 5,
-        title: 'New Road Hotel',
-        price: 899,
-        currency: 'THB'
-    }, {
-        images: [process.env.PUBLIC_URL + '/assets/img/300x230/img9.jpg'],
-        location: 'stanbul, Turkey',
-        stars: 5,
-        title: 'New York Marriott Downtown',
-        price: 899,
-        currency: 'THB'
-    }]
+        title: 'Devasom Khao Lak Beach Resort & Villas',
+        // price: 899,
+        // currency: 'THB'
+    }, 
+    // {
+    //     images: [process.env.PUBLIC_URL + '/assets/img/300x230/img9.jpg'],
+    //     location: 'Istanbul, Turkey',
+    //     stars: 5,
+    //     title: 'Park Avenue Baker Street London',
+    //     price: 899,
+    //     currency: 'THB'
+    // }, {
+    //     images: [process.env.PUBLIC_URL + '/assets/img/300x230/img9.jpg'],
+    //     location: 'Istanbul, Turkey',
+    //     stars: 5,
+    //     title: 'New Road Hotel',
+    //     price: 899,
+    //     currency: 'THB'
+    // }, {
+    //     images: [process.env.PUBLIC_URL + '/assets/img/300x230/img9.jpg'],
+    //     location: 'stanbul, Turkey',
+    //     stars: 5,
+    //     title: 'New York Marriott Downtown',
+    //     price: 899,
+    //     currency: 'THB'
+    // }
+    ]
     useEffect(() => {
         // initialization of slick carousel
         $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
@@ -115,8 +117,8 @@ const ProductCardsRatingWithCarousel = () => {
                                         location={result.location}
                                         title={result.title}
                                         stars={result.stars}
-                                        price={result.price}
-                                        currency={result.currency}
+                                        // price={result.price}
+                                        // currency={result.currency}
                                     ></ResultCard>
                                 </div>
                             </>

@@ -11,8 +11,8 @@ type Props = {
     stars: number;
     image: string;
     location: string;
-    price: number;
-    currency: string;
+    price?: number;
+    currency?: string;
 }
 const ResultCard = (props: Props) => {
     const {
@@ -60,10 +60,10 @@ const ResultCard = (props: Props) => {
                     <UISref to='hotel.result' params={{ searchId, hotelId }}>
                         <a className="card-title font-size-17 font-weight-medium text-dark">{title}</a>
                     </UISref>
-                    <div className="mb-0">
+                    {price && currency && <div className="mb-0">
                         <span className="mr-1 font-size-14 text-gray-1">Price start from</span>
                         <span className="font-weight-bold">{format.formatPrice(price, currency)}</span>
-                    </div>
+                    </div>}
                 </div>
             </div>
         </>
